@@ -7,10 +7,20 @@ version : '3'
 services:
     api:
         container_name: cashmanager_api
-        build: 
-          context: ./apps/products
+        command:
+            - ./api/entrypoint.sh
+        build:
+            context: ./apps/products
+        environment:
+            PGUSER: postgres
+            PGPASSWORD: postgres
+            PGDATABASE: cashmanager
+            PGPORT: 5432
+            PGHOST: db
         ports:
           - "9090:9090"
+        depends_on:
+            db
     db:
         container_name: cashmanager_db
         image: postgres:9.6
