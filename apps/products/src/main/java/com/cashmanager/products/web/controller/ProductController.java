@@ -1,62 +1,57 @@
 package com.cashmanager.products.web.controller;
-import com.cashmanager.products.dao.ProductDao;
+
+import com.cashmanager.products.repository.ProductRepository;
 import com.cashmanager.products.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import com.cashmanager.products.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import javax.validation.Valid;
+
 
 @RestController
 public class ProductController {
-
     @Autowired
-    private ProductDao productDao;
+    private ProductRepository ProductRepository;
 
     @GetMapping(value="/Products")
-    public List<Product>getProducts() {
-        return productDao.findAll();
+    public Page<Product>getProducts(Pageable pageable) {
+        return ProductRepository.findAll(pageable);
     }
 
-    @GetMapping(value="/Products/{id}")
-    public Product getProductById(@PathVariable int id) {
-        return productDao.findById(id);
+    @GetMapping(value="/Products/{productId}")
+    public Product getProductById(@PathVariable long productId) {
+        return ProductRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + productId));
     }
 
-    @PostMapping(value = "/Products")
-    public void addProduct(@RequestBody Product product) {
-        productDao.save(product);
+    @PostMapping("/Products")
+    public Product createProduct(@Valid @RequestBody Product product) {
+        return ProductRepository.save(product);
     }
 
-    @DeleteMapping(value="/Products/{id}")
-    public Product deleteProduct(@PathVariable int id) {
-        Product prod = productDao.findById(id);
-        if (prod != null) {
-            productDao.delete(id);
-        }
-        return null;
+    @PutMapping("/Products/{productId}")
+    public Product updateProduct(@PathVariable long productId,
+                                   @Valid @RequestBody Product productRequest) {
+        return ProductRepository.findById(productId)
+                .map(product -> {
+                    product.setPrice(productRequest.getPrice());
+                    product.setName(productRequest.getName());
+                    product.setImgUrl(productRequest.getImgUrl());
+                    product.setQuantity(productRequest.getQuantity());
+                    product.setDescription(productRequest.getDescription());
+                    return ProductRepository.save(product);
+                }).orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + productId));
     }
 
-    @PutMapping(value="/Products/{id}")
-    public Product updateMapping(@PathVariable int id, @RequestBody Product product) {
-        System.out.println(product);
-        Product prod = productDao.findById(id);
-        if (prod == null | product == null) {
-            return null;
-        }
-        if (product.getDescription() != null) {
-            prod.setDescription(product.getDescription());
-        }
-        if (product.getDescription() != null) {
-            prod.setDescription(product.getDescription());
-        }
-        if (product.getImgUrl() != null) {
-            prod.setImgUrl(product.getImgUrl());
-        }
-        if (product.getName() != null) {
-            prod.setName(product.getName());
-        }
-        if (product.getPrice() != 0) {
-            prod.setPrice(product.getPrice());
-        }
-        return null;
+    @DeleteMapping("/Products/{productId}")
+    public ResponseEntity<?> deleteProduct(@PathVariable long productId) {
+        return ProductRepository.findById(productId)
+                .map(product -> {
+                    ProductRepository.delete(product);
+                    return ResponseEntity.ok().build();
+                }).orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + productId));
     }
 }

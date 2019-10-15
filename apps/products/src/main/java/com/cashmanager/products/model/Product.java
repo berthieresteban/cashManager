@@ -1,22 +1,42 @@
 package com.cashmanager.products.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "products")
 public class Product {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String name;
     private int price;
-    private String imgUrl;
+    @NotBlank
+    @Size(min = 3, max = 100)
+    private String img_url;
+    @NotBlank
+    @Size(min = 3, max = 250)
     private String description;
+    private int quantity;
 
     public Product() {
 
     }
 
-    public Product(int id, String name, int price, String imgUrl, String description) {
+    public Product(long id, String name, int price, String img_url, String description, int quantity) {
         this.id = id;
         this.name = name;
-        this.imgUrl = imgUrl;
+        this.img_url = img_url;
         this.price = price;
         this.description = description;
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getDescription() {
@@ -24,23 +44,27 @@ public class Product {
     }
 
     public String getImgUrl() {
-        return imgUrl;
+        return img_url;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImgUrl(String img_url) {
+        this.img_url = img_url;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id=id;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -48,7 +72,7 @@ public class Product {
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     public int getPrice() {
@@ -56,17 +80,18 @@ public class Product {
     }
 
     public void setPrice(int price) {
-        this.price=price;
+        this.price = price;
     }
 
     @Override
-    public String toString(){
-        return "Product{"+
+    public String toString() {
+        return "Product{" +
                 "id=" + id +
-                ", name='"+ name + '\'' +
-                ", description='"+ description + '\'' +
-                ", imgUrl='"+ imgUrl + '\'' +
-                ", price=" + price + '}';
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price + '\'' +
+                ", quantity'" + quantity + '\'' +
+                ", img_url='" + img_url + "\'}";
     }
 }
 

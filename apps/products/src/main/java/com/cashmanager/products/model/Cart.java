@@ -1,29 +1,38 @@
 package com.cashmanager.products.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.beans.JavaBean;
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
+@Table(name = "carts")
+@JavaBean
 public class Cart {
-    private int id;
-    private List<Integer> articles = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String articles;
     private float totalBill;
+    private boolean paid;
+    private String paymentMode;
 
+    public Cart() { }
 
-    public Cart() {
-
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 
-    public Cart(int id, List<Integer> articles, float totalBill) {
-        this.id = id;
+    public void setPaymentMode(String paymentMode) {
+        this.paymentMode = paymentMode;
+    }
+
+    public void setArticles(String articles) {
         this.articles = articles;
-        this.totalBill = totalBill;
     }
 
-    public void setArticles(List<Integer> articles) {
-        this.articles = articles;
-    }
-
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -31,29 +40,39 @@ public class Cart {
         this.totalBill = totalBill;
     }
 
+    public boolean getPaid() {
+        return paid;
+    }
+
+    public String getPaymentMode() {
+        return paymentMode;
+    }
+
     public float getTotalBill() {
         return totalBill;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public List<Integer> getArticles() {
+    public String getArticles() {
         return articles;
     }
 
     @Override
-    public String toString(){
-        String product =
-                "Cart{"+
-                "id=" + id +
-                ", totalBill='"+ totalBill + '\'' +
-        ", articles= [" ;
-        for (int id : articles) {
-            product += id + ",";
-        }
-        product += "]}";
-        return product;
+    public String toString() {
+        String Cart =
+                "Cart{" +
+                        "id=" + id +
+                        ", totalBill='" + totalBill + '\'' +
+                        ", paid='" + paid + '\'' +
+                        ", paymentMode=" + paymentMode + '\'' +
+                        ", articles=[";
+//        for (int id : articles) {
+//            Cart += id + ",";
+//        }
+        Cart += "]}";
+        return Cart;
     }
 }

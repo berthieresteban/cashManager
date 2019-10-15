@@ -1,53 +1,56 @@
 package com.cashmanager.products.web.controller;
-import com.cashmanager.products.dao.CartDao;
+import com.cashmanager.products.exception.ResourceNotFoundException;
 import com.cashmanager.products.model.Cart;
+import com.cashmanager.products.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+
+import javax.validation.Valid;
 
 @RestController
 public class CartController {
 
     @Autowired
-    private CartDao cartDao;
+    private CartRepository CartRepository;
 
-    @GetMapping(value="/Carts")
-    public List<Cart>getCarts() {
-        return cartDao.findAll();
+    @GetMapping(value = "/Carts")
+    public Page<Cart> getCarts(Pageable pageable) {
+        return CartRepository.findAll(pageable);
     }
 
-    @GetMapping(value="/Carts/{id}")
-    public Cart getCartById(@PathVariable int id) {
-        return cartDao.findById(id);
+    @GetMapping(value = "/Carts/{cartId}")
+    public Cart getCartById(@PathVariable long cartId) {
+        return CartRepository.findById(cartId)
+                .orElseThrow(() -> new ResourceNotFoundException("Cart not found with id " + cartId));
     }
 
-    @PostMapping(value = "/Carts")
-    public void addCart(@RequestBody Cart cart) {
-        cartDao.save(cart);
+    @PostMapping("/Carts")
+    public Cart createCart(@Valid @RequestBody Cart cart) {
+        return CartRepository.save(cart);
     }
 
-    @DeleteMapping(value="/Carts/{id}")
-    public Cart deleteCart(@PathVariable int id) {
-        Cart prod = cartDao.findById(id);
-        if (prod != null) {
-            cartDao.delete(id);
-        }
-        return null;
+    @PutMapping("/Carts/{cartId}")
+    public Cart updateCart(@PathVariable long cartId,
+                           @Valid @RequestBody Cart cartRequest) {
+        return CartRepository.findById(cartId)
+                .map(cart -> {
+                    cart.setTotalBill(cartRequest.getTotalBill());
+                    cart.setArticles(cartRequest.getArticles());
+                    cart.setPaid(cartRequest.getPaid());
+                    cart.setPaymentMode(cartRequest.getPaymentMode());
+                    return CartRepository.save(cart);
+                }).orElseThrow(() -> new ResourceNotFoundException("Cart not found with id " + cartId));
     }
 
-    @PutMapping(value="/Carts/{id}")
-    public Cart updateMapping(@PathVariable int id, @RequestBody Cart cart) {
-        System.out.println(cart);
-        Cart c = cartDao.findById(id);
-        if (c == null | cart == null) {
-            return null;
-        }
-        if (cart.getTotalBill() != 0) {
-            c.setTotalBill(cart.getTotalBill());
-        }
-        if (cart.getArticles() != null) {
-            c.setArticles(cart.getArticles());
-        }
-        return null;
+    @DeleteMapping("/Carts/{cartId}")
+    public ResponseEntity<?> deleteCart(@PathVariable long cartId) {
+        return CartRepository.findById(cartId)
+                .map(cart -> {
+                    CartRepository.delete(cart);
+                    return ResponseEntity.ok().build();
+                }).orElseThrow(() -> new ResourceNotFoundException("Cart not found with id " + cartId));
     }
 }
