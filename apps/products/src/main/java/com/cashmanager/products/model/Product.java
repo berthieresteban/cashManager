@@ -13,7 +13,7 @@ public class Product {
     @NotBlank
     @Size(min = 3, max = 20)
     private String name;
-    private int price;
+    private float price;
     @NotBlank
     @Size(min = 3, max = 100)
     private String img_url;
@@ -26,7 +26,7 @@ public class Product {
 
     }
 
-    public Product(long id, String name, int price, String img_url, String description, int quantity) {
+    public Product(long id, String name, float price, String img_url, String description, int quantity) {
         this.id = id;
         this.name = name;
         this.img_url = img_url;
@@ -75,23 +75,17 @@ public class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price + '\'' +
-                ", quantity'" + quantity + '\'' +
-                ", img_url='" + img_url + "\'}";
+        return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", price="
+                + price + '\'' + ", quantity'" + quantity + '\'' + ", img_url='" + img_url + "\'}";
     }
 }
-
