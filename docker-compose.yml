@@ -7,6 +7,7 @@ version : '3'
 services:
     api:
         container_name: cashmanager_api
+        image: berthieresteban/cashmanager_api
         build:
             context: ./apps/products
         ports:
@@ -22,9 +23,3 @@ services:
             POSTGRES_PASSWORD: postgres
             PGDATA: /var/lib/postgresql/data/cashmanager
         restart: always
-        # volumes:
-            # - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
-            # - "/var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock"
-            # - "dbdata:/var/lib/postgresql/data"
-# volumes:
-    # dbdata:
