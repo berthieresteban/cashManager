@@ -1,7 +1,7 @@
 ##
 ## EPITECH PROJECT, 2019
 ## Makefile
-## Julien Legay
+## CashManager
 ##
 
 build:
