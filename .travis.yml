@@ -9,6 +9,7 @@ jobs:
       script:
         - npm install
         - npm run build-backend
+        - npm run run-backend
         - npm run test-backend
 
     - stage: Deploy Back

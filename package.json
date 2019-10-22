@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Projet EPITECH Cash Manager [JAVA]",
   "scripts": {
-    "build-backend": "mvn clean package install -f ./apps/products/pom.xml",
-    "run-backend": "docker-compose up",
+    "build-backend": "docker-compose build",
+    "run-backend-debug": "docker-compose up",
+    "run-backend": "./ci/run-backend.sh",
     "test-backend": "./ci/run-tests.sh"
   },
   "dependencies": {
