@@ -1,0 +1,19 @@
+---
+services: 
+  - docker
+
+jobs:
+  include:
+    - stage: Tests Backend
+      if: type = pull_request AND branch = 1-dev
+      script:
+        - npm run build-backend
+        - npm run run-backend
+        - npm run test-backend
+
+    - stage: Deploy Back
+      if: type = push AND branch = master
+      script:
+        - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
+        - docker-compose build
+        - docker push berthieresteban/cashmanager_api:latest
