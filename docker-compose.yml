@@ -1,0 +1,25 @@
+#
+# Docker compose file
+# EPITECH 2019 - CashManager
+#
+
+version : '3'
+services:
+    api:
+        container_name: cashmanager_api
+        image: berthieresteban/cashmanager_api
+        build:
+            context: ./apps/products
+        ports:
+          - "9090:9090"
+        depends_on:
+            [db]
+    db:
+        container_name: cashmanager_db
+        build: 
+            context: ./db
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            PGDATA: /var/lib/postgresql/data/cashmanager
+        restart: always

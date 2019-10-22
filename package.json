@@ -1,0 +1,13 @@
+{
+  "name": "cashmanager",
+  "version": "1.0.0",
+  "description": "Projet EPITECH Cash Manager [JAVA]",
+  "scripts": {
+    "build-backend": "mvn clean package install -f ./apps/products/pom.xml",
+    "run-backend": "docker-compose up",
+    "test-backend": "newman run ./ci/CashManager.postman_collection.json  --timeout 1800000 --timeout-request 1800000 --timeout-script 1800000 --bail"
+  },
+  "dependencies": {
+    "newman": "^4.5.5"
+  }
+}

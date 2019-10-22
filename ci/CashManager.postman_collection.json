@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "9cfc0459-465a-43f4-ad1b-b95f515f38aa",
+		"name": "CashManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "822d2cb6-c885-482b-841f-afc2104192c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Get 4 products\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.content.length).to.eql(4);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9090/Products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Products"
+							]
+						},
+						"description": "GET Request on product controller"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "390a2978-1fea-460e-adc3-a929d22d3382",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Mais\");",
+									"});",
+									"",
+									"pm.test(\"Verify description\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.description).to.eql(\"Grillé c'est trop bon.\");",
+									"});",
+									"",
+									"pm.test(\"Verify quantity\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.quantity).to.eql(23);",
+									"});",
+									"",
+									"pm.test(\"Verify url\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.imgUrl).to.eql(\"maisUrl\");",
+									"});",
+									"",
+									"pm.test(\"Verify id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(5);",
+									"});",
+									"",
+									"pm.test(\"Verify Price\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.price).to.eql(0.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mais\",\n  \"price\": 0.99,\n  \"description\": \"Grillé c'est trop bon.\",\n  \"quantity\": 23,\n  \"imgUrl\": \"maisUrl\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9090/Products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Products"
+							]
+						},
+						"description": "POST Request to create product"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5807a199-d88b-4124-acd1-075d1195e5a7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify name\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql(\"Tomate2\");",
+									"});",
+									"",
+									"pm.test(\"Verify description\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.description).to.eql(\"Toujours despagne.\");",
+									"});",
+									"",
+									"pm.test(\"Verify quantity\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.quantity).to.eql(12);",
+									"});",
+									"",
+									"pm.test(\"Verify url\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.imgUrl).to.eql(\"tomate2Url\");",
+									"});",
+									"",
+									"pm.test(\"Verify id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"Verify Price\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.price).to.eql(1.99);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tomate2\",\n  \"price\": 1.99,\n  \"description\": \"Toujours despagne.\",\n  \"quantity\": 12,\n  \"imgUrl\": \"tomate2Url\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9090/Products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Products",
+								"1"
+							]
+						},
+						"description": "UPDATE Request to update a product"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ceb3866f-3031-4385-b00c-5e9a60b942ab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9090/Products/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Products",
+								"5"
+							]
+						},
+						"description": "DELETE Request to delete product"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carts",
+			"item": [
+				{
+					"name": "Get All Carts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "822d2cb6-c885-482b-841f-afc2104192c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Get 4 products\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.content.length).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9090/Carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Carts"
+							]
+						},
+						"description": "GET Request on cart controller"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "390a2978-1fea-460e-adc3-a929d22d3382",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify paymendMode\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.paymentMode).to.eql(null);",
+									"});",
+									"",
+									"pm.test(\"Verify paid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.paid).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"Verify totalBill\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.totalBill).to.eql(12);",
+									"});",
+									"",
+									"pm.test(\"Verify id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(4);",
+									"});",
+									"",
+									"pm.test(\"Verify articles\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.articles).to.eql('[1, 2, 3, 4]');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\n            \"articles\": \"[1, 2, 3, 4]\",\n            \"totalBill\": 12,\n            \"paid\": false,\n            \"paymentMode\": null\n        }"
+						},
+						"url": {
+							"raw": "http://localhost:9090/Carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Carts"
+							]
+						},
+						"description": "POST Request to create product"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5807a199-d88b-4124-acd1-075d1195e5a7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Verify paymendMode\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.paymentMode).to.eql(\"CB\");",
+									"});",
+									"",
+									"pm.test(\"Verify paid\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.paid).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Verify totalBill\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.totalBill).to.eql(22);",
+									"});",
+									"",
+									"pm.test(\"Verify id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"Verify articles\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.articles).to.eql('[1, 2, 3, 4]');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"articles\": \"[1, 2, 3, 4]\",\n    \"totalBill\": 22,\n    \"paid\": true,\n    \"paymentMode\": \"CB\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9090/Carts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Carts",
+								"1"
+							]
+						},
+						"description": "UPDATE Request to update a product"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ceb3866f-3031-4385-b00c-5e9a60b942ab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9090/Products/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"Products",
+								"1"
+							]
+						},
+						"description": "DELETE Request to delete product"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
