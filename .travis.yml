@@ -7,6 +7,7 @@ jobs:
     - stage: Tests Backend
       if: type = pull_request AND branch = 1-dev
       script:
+        - npm ci
         - npm run build-backend
         - npm run test-backend
 
