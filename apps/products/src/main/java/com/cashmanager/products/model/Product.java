@@ -16,7 +16,7 @@ public class Product {
     private float price;
     @NotBlank
     @Size(min = 3, max = 100)
-    private String img_url;
+    private String imgUrl;
     @NotBlank
     @Size(min = 3, max = 250)
     private String description;
