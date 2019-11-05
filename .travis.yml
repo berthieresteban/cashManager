@@ -7,6 +7,7 @@ jobs:
     - stage: Tests Backend
       if: type = pull_request AND branch = 1-dev
       script:
+        - npm install
         - npm run build-backend
         - npm run run-backend
         - npm run test-backend
@@ -15,5 +16,5 @@ jobs:
       if: type = push AND branch = master
       script:
         - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
-        - docker-compose build
+        - npm run build-backend
         - docker push berthieresteban/cashmanager_api:latest
