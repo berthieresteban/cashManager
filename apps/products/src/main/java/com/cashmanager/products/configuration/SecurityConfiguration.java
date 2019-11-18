@@ -32,17 +32,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/Products").authenticated()  // Get All
-            .antMatchers(HttpMethod.GET, "/Products/{productId:[\\d+]}").authenticated() // Get by id
-            .antMatchers(HttpMethod.POST, "/Products").hasRole("ADMIN") // Create new product
+            .antMatchers(HttpMethod.GET, "/Products").authenticated()  // List products
+            .antMatchers(HttpMethod.GET, "/Products/{productId:[\\d+]}").authenticated() // Get product by id
+            .antMatchers(HttpMethod.POST, "/Products").hasRole("ADMIN") // Create new product 
             .antMatchers(HttpMethod.PUT, "/Products/{productId:[\\d+]}").hasRole("ADMIN") // Update product
-            .antMatchers(HttpMethod.DELETE, "/Products/{productId:[\\d+]}").hasRole("ADMIN") // Delte product
+            .antMatchers(HttpMethod.DELETE, "/Products/{productId:[\\d+]}").hasRole("ADMIN") // Delete product
 
-            .antMatchers(HttpMethod.GET, "/Carts").authenticated() 
-            .antMatchers(HttpMethod.GET, "/Carts/{productId:[\\d+]}").authenticated() 
-            .antMatchers(HttpMethod.POST, "/Carts").authenticated() 
-            .antMatchers(HttpMethod.PUT, "/Carts/{productId:[\\d+]}").authenticated() 
-            .antMatchers(HttpMethod.DELETE, "/Carts/{productId:[\\d+]}").authenticated()
+            .antMatchers(HttpMethod.GET, "/Carts").hasRole("ADMIN") // List carts
+            .antMatchers(HttpMethod.GET, "/Carts/{productId:[\\d+]}").authenticated() // get cart by id 
+            .antMatchers(HttpMethod.POST, "/Carts").hasRole("ADMIN") // Create cart
+            .antMatchers(HttpMethod.PUT, "/Carts/{productId:[\\d+]}").authenticated() // update cart
+            .antMatchers(HttpMethod.DELETE, "/Carts/{productId:[\\d+]}").hasRole("ADMIN") // Delete cart
             .anyRequest().authenticated()
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))

@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS carts
  articles text DEFAULT NULL,
  paid boolean NOT NULL,
  payment_mode VARCHAR(100) DEFAULT NULL,
- username text NOT NULL
+ username text NOT NULL,
+ UNIQUE (username, id),
+ FOREIGN KEY (username) REFERENCES users (username)
 );
 
 CREATE TABLE IF NOT EXISTS products

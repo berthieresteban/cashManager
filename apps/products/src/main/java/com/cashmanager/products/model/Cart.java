@@ -17,8 +17,13 @@ public class Cart {
     private float totalBill;
     private boolean paid;
     private String paymentMode;
+    private String username;
 
     public Cart() { }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public void setPaid(boolean paid) {
         this.paid = paid;
@@ -38,6 +43,10 @@ public class Cart {
 
     public void setTotalBill(float totalBill) {
         this.totalBill = totalBill;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public boolean getPaid() {
