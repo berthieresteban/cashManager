@@ -24,7 +24,6 @@ public class ProductController {
     public Product getProductById(@PathVariable long productId) {
         return ProductRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id " + productId));
- 
     }
 
     @PostMapping("/Products")

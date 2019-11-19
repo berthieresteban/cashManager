@@ -42,7 +42,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
@@ -52,20 +51,16 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         if (StringUtils.isNotEmpty(token) && token.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             try {
                 byte[] signingKey = SecurityConstants.JWT_SECRET.getBytes();
-
                 Jws<Claims> parsedToken = Jwts.parser()
                     .setSigningKey(signingKey)
                     .parseClaimsJws(token.replace("Bearer ", ""));
-
                 String username = parsedToken
                     .getBody()
                     .getSubject();
-
                 List<SimpleGrantedAuthority>  authorities = ((List<?>) parsedToken.getBody()
                     .get("rol")).stream()
                     .map(authority -> new SimpleGrantedAuthority((String) authority))
                     .collect(Collectors.toList());
-
                 if (StringUtils.isNotEmpty(username)) {
                     return new UsernamePasswordAuthenticationToken(username, null, authorities);
                 }

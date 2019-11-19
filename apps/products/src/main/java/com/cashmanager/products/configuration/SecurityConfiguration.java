@@ -3,6 +3,8 @@ package com.cashmanager.products.configuration;
 
 import com.cashmanager.products.security.JwtAuthenticationFilter;
 import com.cashmanager.products.security.JwtAuthorizationFilter;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,9 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import javax.sql.DataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -43,6 +43,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.POST, "/Carts").hasRole("ADMIN") // Create cart
             .antMatchers(HttpMethod.PUT, "/Carts/{productId:[\\d+]}").authenticated() // update cart
             .antMatchers(HttpMethod.DELETE, "/Carts/{productId:[\\d+]}").hasRole("ADMIN") // Delete cart
+
+            .antMatchers(HttpMethod.GET, "/Users").hasRole("ADMIN") // List Users
+            .antMatchers(HttpMethod.GET, "/Users/{username:.*}").hasRole("ADMIN") // get user by id 
+            .antMatchers(HttpMethod.POST, "/Users/{role:.*}").hasRole("ADMIN") // Create user
+            .antMatchers(HttpMethod.POST, "/Users/updateRole/{username:.*}/{role:.*}").hasRole("ADMIN") // update user role
+            .antMatchers(HttpMethod.PUT, "/Users/setEnabled{username:.*}").hasRole("ADMIN") // update user
+            .antMatchers(HttpMethod.DELETE, "/Users/{username:.*}").hasRole("ADMIN") // Delete user
             .anyRequest().authenticated()
             .and()
             .addFilter(new JwtAuthenticationFilter(authenticationManager()))
@@ -61,6 +68,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource)
+    {
+        return new JdbcTemplate(dataSource);
     }
 
     @Bean
