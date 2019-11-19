@@ -1,75 +1,88 @@
 package com.epitech.cashmanagerapp
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
+import android.util.Log
 import android.widget.Toast
-import androidx.navigation.NavController
-import com.epitech.cashmanager.EventBus.CountCartEvent
-import com.epitech.cashmanager.EventBus.HideFabCart
-import com.epitech.cashmanager.db.CartDataSource
-import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.app_bar_main.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import io.paperdb.Paper
+import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var apiService: APIService
+    private lateinit var productAdapter: ProductAdapter
+
+    private lateinit var products: Result
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Paper.init(this)
+
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+
+
         setSupportActionBar(toolbar)
+        apiService = APIConfig.getRetrofitClient(this).create(APIService::class.java)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(this, R.color.colorPrimary))
+
+        swipeRefreshLayout.isRefreshing = true
+
+        swipeRefreshLayout.setOnRefreshListener {
+            getProducts()
         }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_home, R.id.nav_cart, R.id.nav_tools
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+
+//        val layoutManager = StaggeredGridLayoutManager(this, Lin)
+
+        products_recyclerview.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+
+        cart_size.text = ShoppingCart.getShoppingCartSize().toString()
+
+        getProducts()
+
+
+        showCart.setOnClickListener {
+
+            startActivity(Intent(this, ShoppingCartActivity::class.java))
+        }
+
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
+
+    fun getProducts() {
+
+        apiService.getProducts().enqueue(object : retrofit2.Callback<Result> {
+            override fun onFailure(call: Call<Result>, t: Throwable) {
+
+                print(t.message)
+                Log.d("Data error", t.message)
+                Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+
+                swipeRefreshLayout.isRefreshing = false
+//                swipeRefreshLayout.isEnabled = false
+
+                products = response.body()!!
+
+                productAdapter = ProductAdapter(products)
+
+                products_recyclerview.adapter = productAdapter
+
+//                productAdapter.notifyDataSetChanged()
+
+            }
+
+        })
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
 }
-
-/*<com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_place_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Place order"/>*/
