@@ -39,16 +39,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.DELETE, "/Products/{productId:[\\d+]}").hasRole("ADMIN") // Delete product
 
             .antMatchers(HttpMethod.GET, "/Carts").hasRole("ADMIN") // List carts
-            .antMatchers(HttpMethod.GET, "/Carts/{productId:[\\d+]}").authenticated() // get cart by id 
-            .antMatchers(HttpMethod.POST, "/Carts").hasRole("ADMIN") // Create cart
-            .antMatchers(HttpMethod.PUT, "/Carts/{productId:[\\d+]}").authenticated() // update cart
-            .antMatchers(HttpMethod.DELETE, "/Carts/{productId:[\\d+]}").hasRole("ADMIN") // Delete cart
+            .antMatchers(HttpMethod.GET, "/Carts/{cartId:[\\d+]}").authenticated() // get cart by id 
+            .antMatchers(HttpMethod.PUT, "/Carts/{cartId:[\\d+]}").authenticated() // update cart
 
             .antMatchers(HttpMethod.GET, "/Users").hasRole("ADMIN") // List Users
             .antMatchers(HttpMethod.GET, "/Users/{username:.*}").hasRole("ADMIN") // get user by id 
             .antMatchers(HttpMethod.POST, "/Users/{role:.*}").hasRole("ADMIN") // Create user
             .antMatchers(HttpMethod.POST, "/Users/updateRole/{username:.*}/{role:.*}").hasRole("ADMIN") // update user role
-            .antMatchers(HttpMethod.PUT, "/Users/setEnabled{username:.*}").hasRole("ADMIN") // update user
+            .antMatchers(HttpMethod.PUT, "/Users/setEnabled/{username:.*}").hasRole("ADMIN") // update user
             .antMatchers(HttpMethod.DELETE, "/Users/{username:.*}").hasRole("ADMIN") // Delete user
             .anyRequest().authenticated()
             .and()

@@ -62,8 +62,10 @@ public class UserController {
     public User createUser(@Valid @RequestBody User userRequest, @PathVariable String role) {
         userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         User user = UserRepository.save(userRequest);
-        String request = "INSERT INTO user_roles (username, role) VALUES ('"+userRequest.getUsername()+"', '"+role+"');";
-        jdbcTemplate.update(request);
+        String requestRole = "INSERT INTO user_roles (username, role) VALUES ('"+userRequest.getUsername()+"', '"+role+"');";
+        jdbcTemplate.update(requestRole);
+        String requestCart = "INSERT INTO carts (total_bill, articles, paid, payment_mode, username) VALUES (0, '[]', false, NULL, '"+userRequest.getUsername()+"');";
+        jdbcTemplate.update(requestCart);
         return user;
     }
 
@@ -94,12 +96,17 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable String username) {
         Optional<User> user =  UserRepository.getUserByUsername(username);
         if (user.isPresent()) {
+            String requestCart = "DELETE FROM carts WHERE username='"+username+"';";
+            jdbcTemplate.update(requestCart);
+            String requestRole = "DELETE FROM user_roles WHERE username='"+username+"';";
+            jdbcTemplate.update(requestRole);
             return new ResponseEntity<>(
                 user.map(User -> {
                     UserRepository.delete(User);
                     return ResponseEntity.ok().build();
                 }),
-                HttpStatus.OK);    
+                HttpStatus.OK); 
+
         }
         return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
     }

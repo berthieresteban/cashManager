@@ -41,11 +41,6 @@ public class CartController {
         }
     }
 
-    @PostMapping("/Carts")
-    public Cart createCart(@Valid @RequestBody Cart cart) {
-        return CartRepository.save(cart);
-    }
-
     @PutMapping("/Carts/{cartId}")
     public Cart updateCart(@RequestHeader String Authorization, @PathVariable long cartId, @Valid @RequestBody Cart cartRequest) {
         Cart cartRet = CartRepository.findById(cartId)
@@ -63,15 +58,6 @@ public class CartController {
         } else {
             throw new ForbiddenException("Can't access to cart no: " + cartId);
         }
-    }
-
-    @DeleteMapping("/Carts/{cartId}")
-    public ResponseEntity<?> deleteCart(@PathVariable long cartId) {
-        return CartRepository.findById(cartId)
-            .map(cart -> {
-                CartRepository.delete(cart);
-                return ResponseEntity.ok().build();
-            }).orElseThrow(() -> new ResourceNotFoundException("Cart not found with id " + cartId));
     }
 
     private String getUsername(String token) {
