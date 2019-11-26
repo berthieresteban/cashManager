@@ -11,10 +11,10 @@ docker stop cashmanager_db || true && docker rm cashmanager_db || true
 
 docker-compose -f ./docker-compose.yml up -d api db
 
-echo " Waiting for Api to be up at http://localhost:9090"
+echo " Waiting for Api to be up at http://localhost:8080"
 echo
 
-until curl --output /dev/null --silent --fail -d -H "Content-Type: application/json" -X GET http://localhost:9090/isApiUp; do
+until curl --output /dev/null --silent --fail -d -H "Content-Type: application/json" -X GET http://localhost:8080/isApiUp; do
   printf '.'
   sleep 5
 done

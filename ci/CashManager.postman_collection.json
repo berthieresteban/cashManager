@@ -39,12 +39,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:9090/api/authenticate?username=user-admin&password=pass-admin",
+							"raw": "http://localhost:8080/api/authenticate?username=user-admin&password=pass-admin",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9090",
+							"port": "8080",
 							"path": [
 								"api",
 								"authenticate"
@@ -94,12 +94,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:9090/api/authenticate?username=user1&password=pass-user1",
+							"raw": "http://localhost:8080/api/authenticate?username=user1&password=pass-user1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "9090",
+							"port": "8080",
 							"path": [
 								"api",
 								"authenticate"
@@ -167,12 +167,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products",
+									"raw": "http://localhost:8080/Products",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products"
 									]
@@ -247,12 +247,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/1",
+									"raw": "http://localhost:8080/Products/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"1"
@@ -328,12 +328,12 @@
 									"raw": "{\n  \"name\": \"Mais\",\n  \"price\": 0.99,\n  \"description\": \"Grillé c'est trop bon.\",\n  \"quantity\": 23,\n  \"imgUrl\": \"maisUrl\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products",
+									"raw": "http://localhost:8080/Products",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products"
 									]
@@ -408,12 +408,12 @@
 									"raw": "{\n  \"name\": \"Mais2\",\n  \"price\": 1.99,\n  \"description\": \"Grillé c'est trop bon lol.\",\n  \"quantity\": 32,\n  \"imgUrl\": \"mais2Url\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/5",
+									"raw": "http://localhost:8080/Products/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"5"
@@ -453,12 +453,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/5",
+									"raw": "http://localhost:8080/Products/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"5"
@@ -515,12 +515,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts",
+									"raw": "http://localhost:8080/Carts",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts"
 									]
@@ -565,12 +565,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts/1",
+									"raw": "http://localhost:8080/Carts/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts",
 										"1"
@@ -616,12 +616,12 @@
 									"raw": "{\n    \"articles\": \"[1, 2, 3, 4]\",\n    \"totalBill\": 22,\n    \"paid\": true,\n    \"paymentMode\": \"CB\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts/1",
+									"raw": "http://localhost:8080/Carts/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts",
 										"1"
@@ -678,12 +678,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users",
+									"raw": "http://localhost:8080/Users",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users"
 									]
@@ -745,12 +745,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/user1",
+									"raw": "http://localhost:8080/Users/user1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"user1"
@@ -805,12 +805,12 @@
 									"raw": "{\n\t\"username\": \"user4\",\n\t\"password\": \"pass-user4\",\n\t\"enabled\": true\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/ROLE_USER",
+									"raw": "http://localhost:8080/Users/ROLE_USER",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"ROLE_USER"
@@ -859,12 +859,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/updateRole/user4/ROLE_ADMIN",
+									"raw": "http://localhost:8080/Users/updateRole/user4/ROLE_ADMIN",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"updateRole",
@@ -925,12 +925,12 @@
 									"raw": "{\n\t\"enabled\": false\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/setEnabled/user4",
+									"raw": "http://localhost:8080/Users/setEnabled/user4",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"setEnabled",
@@ -971,12 +971,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/user2",
+									"raw": "http://localhost:8080/Users/user2",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"user2"
@@ -1038,12 +1038,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products",
+									"raw": "http://localhost:8080/Products",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products"
 									]
@@ -1118,12 +1118,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/1",
+									"raw": "http://localhost:8080/Products/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"1"
@@ -1169,12 +1169,12 @@
 									"raw": "{\n  \"name\": \"Mais\",\n  \"price\": 0.99,\n  \"description\": \"Grillé c'est trop bon.\",\n  \"quantity\": 23,\n  \"imgUrl\": \"maisUrl\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products",
+									"raw": "http://localhost:8080/Products",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products"
 									]
@@ -1219,12 +1219,12 @@
 									"raw": "{\n  \"name\": \"Tomate2\",\n  \"price\": 1.99,\n  \"description\": \"Toujours despagne.\",\n  \"quantity\": 12,\n  \"imgUrl\": \"tomate2Url\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/1",
+									"raw": "http://localhost:8080/Products/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"1"
@@ -1264,12 +1264,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Products/5",
+									"raw": "http://localhost:8080/Products/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Products",
 										"5"
@@ -1321,12 +1321,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts",
+									"raw": "http://localhost:8080/Carts",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts"
 									]
@@ -1403,12 +1403,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts/1",
+									"raw": "http://localhost:8080/Carts/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts",
 										"1"
@@ -1484,12 +1484,12 @@
 									"raw": "{\n    \"articles\": \"[1, 2, 3, 4]\",\n    \"totalBill\": 22,\n    \"paid\": true,\n    \"paymentMode\": \"CB\"\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Carts/1",
+									"raw": "http://localhost:8080/Carts/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Carts",
 										"1"
@@ -1541,12 +1541,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users",
+									"raw": "http://localhost:8080/Users",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users"
 									]
@@ -1591,12 +1591,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/user1",
+									"raw": "http://localhost:8080/Users/user1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"user1"
@@ -1642,12 +1642,12 @@
 									"raw": "        {\n            \"articles\": \"[1, 2, 3, 4]\",\n            \"totalBill\": 12,\n            \"paid\": false,\n            \"paymentMode\": null\n        }"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/ROLE_USER",
+									"raw": "http://localhost:8080/Users/ROLE_USER",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"ROLE_USER"
@@ -1693,12 +1693,12 @@
 									"raw": "{\n}"
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/setEnabled/user1",
+									"raw": "http://localhost:8080/Users/setEnabled/user1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"setEnabled",
@@ -1739,12 +1739,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:9090/Users/1",
+									"raw": "http://localhost:8080/Users/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "9090",
+									"port": "8080",
 									"path": [
 										"Users",
 										"1"
