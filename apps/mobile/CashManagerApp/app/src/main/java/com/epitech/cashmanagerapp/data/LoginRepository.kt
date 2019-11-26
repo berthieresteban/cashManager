@@ -1,6 +1,6 @@
 package com.epitech.cashmanagerapp.data
 
-import com.epitech.cashmanagerapp.data.model.LoggedInUser
+import com.epitech.cashmanagerapp.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and
