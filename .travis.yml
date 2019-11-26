@@ -21,7 +21,20 @@ jobs:
 
     - stage: Deploy APK
       if: type = push AND branch = master
+      os: linux
+      dist: trusty
+      language: android
+      install: true
+      jdk: oraclejdk8
+      components:
+        - build-tools-27.0.3
+        - android-28
+      before-install:
+        - chmod +x gradlew
+        - ./gradlew dependencies || true
       script:
+        - ./gradlew build --scan -s
         - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
+        - ./gradlew clean build assembleDebug
         - npm run build-client
         - docker push berthieresteban/cashmanager_client:latest
