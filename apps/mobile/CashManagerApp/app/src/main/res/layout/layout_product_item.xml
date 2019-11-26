@@ -74,16 +74,6 @@
                     card_view:targetApi="o"/>
 
 
-                <ImageButton
-                    android:id="@+id/removeItem"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_remove_shopping_cart_black_24dp"
-                    android:tint="@android:color/white"
-                    android:background="@null"
-                    card_view:targetApi="o"/>
-
             </LinearLayout>
 
         </LinearLayout>
