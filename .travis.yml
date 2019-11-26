@@ -18,3 +18,10 @@ jobs:
         - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
         - npm run build-backend
         - docker push berthieresteban/cashmanager_api:latest
+
+    - stage: Deploy APK
+      if: type = push AND branch = master
+      script:
+        - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
+        - npm run build-client
+        - docker push berthieresteban/cashmanager_client:latest

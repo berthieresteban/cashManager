@@ -5,13 +5,21 @@
 
 version : '3'
 services:
+    client:
+        container_name: cashmanager_client
+        image: berthieresteban/cashmanager_client
+        build: 
+            context: ./apps/mobile
+        ports:
+            - "8081:8081"
+
     api:
         container_name: cashmanager_api
         image: berthieresteban/cashmanager_api
         build:
             context: ./apps/products
         ports:
-          - "9090:9090"
+          - "8080:8080"
         depends_on:
             [db]
     db:
