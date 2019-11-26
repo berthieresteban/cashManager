@@ -23,5 +23,5 @@ jobs:
       if: type = push AND branch = master
       script:
         - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
-        - docker-compose build client
+        - npm run build-client
         - docker push berthieresteban/cashmanager_client:latest
