@@ -32,6 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and()
             .csrf().disable()
             .authorizeRequests()
+
+            .antMatchers(HttpMethod.GET, "/isApiUp").permitAll() // List Users
+
             .antMatchers(HttpMethod.GET, "/Products").authenticated()  // List products
             .antMatchers(HttpMethod.GET, "/Products/{productId:[\\d+]}").authenticated() // Get product by id
             .antMatchers(HttpMethod.POST, "/Products").hasRole("ADMIN") // Create new product 

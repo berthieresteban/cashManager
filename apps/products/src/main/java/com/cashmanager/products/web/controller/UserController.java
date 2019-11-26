@@ -34,6 +34,12 @@ public class UserController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @GetMapping("/isApiUp")
+    public ResponseEntity<?> isApiUp() {
+        return new ResponseEntity<>("Api UP!", HttpStatus.OK);
+    }
+
+
     @GetMapping(value="/Users")
     public List<User>getUsers() {
         return UserRepository.findAll()
