@@ -33,11 +33,11 @@ class LocalCartDataSource(private val cartDAO: CartDAO): CartDataSource {
         return cartDAO.updateCart(cart)
     }
 
-    /*  override fun deleteCart(cart: CartIt): Single<Int> {
+    override fun deleteCart(cart: CartIt): Single<Int> {
           return cartDAO.deleteCart(cart)
-      }
+    }
 
-      override fun cleanCart(uid: String): Single<CartIt> {
+    /*  override fun cleanCart(uid: String): Single<CartIt> {
           return cartDAO.cleanCart(uid)
       }*/
 
