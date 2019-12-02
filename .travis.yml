@@ -23,5 +23,5 @@ jobs:
       if: type = push AND branch = master
       script:
         - docker login -u $DOCKERUSERNAME -p $DOCKERPASSWORD
-        - npm run build-client
+        - npm run build-apk
         - docker push berthieresteban/cashmanager_client:latest
