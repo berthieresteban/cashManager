@@ -26,10 +26,11 @@ interface CartDAO {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateCart(cart:CartIt):Single<Int>
 
-    /*  @Delete()
-      fun deleteCart(cart:CartIt):Single<Int>
+    @Delete()
+    fun deleteCart(cart:CartIt):Single<Int>
 
-      @Query("DELETE FROM Cart WHERE uid=:uid")
+
+    /*@Query("DELETE FROM Cart WHERE uid=:uid")
       fun cleanCart(uid: String): Single<CartIt>*/
 
     @Query("SELECT * FROM Cart WHERE product_id=:product_id AND uid=:uid")
