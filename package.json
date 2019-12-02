@@ -9,7 +9,8 @@
     "run-backend-debug": "docker-compose up db api",
     "run-expose-apk": "docker-compose up client",
     "run-backend": "./ci/run-backend.sh",
-    "test-backend": "./ci/run-tests.sh"
+    "test-backend": "./ci/run-tests.sh",
+    "build-client": "./ci/build-client.sh"
   },
   "dependencies": {
     "newman": "^4.5.5"
