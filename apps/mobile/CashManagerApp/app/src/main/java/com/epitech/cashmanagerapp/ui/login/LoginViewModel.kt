@@ -11,7 +11,7 @@ import com.epitech.cashmanagerapp.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
-    private val _loginForm = MutableLiveData<LoginFormState>()
+  /*  private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
     private val _loginResult = MutableLiveData<LoginResult>()
@@ -51,5 +51,5 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 5
-    }
+    } */
 }
