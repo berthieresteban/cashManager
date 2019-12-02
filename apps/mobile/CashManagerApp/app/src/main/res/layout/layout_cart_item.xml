@@ -61,6 +61,8 @@
                     android:textColor="@android:color/holo_red_dark"/>
             </LinearLayout>
 
+
+
             <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                 android:layout_gravity="right"
                 android:id="@+id/number_button"
@@ -74,6 +76,12 @@
                 app:initialNumber="1"
                 app:textColor="@android:color/white"
                 app:textSize="8sp"/>
+
+            <ImageButton
+                android:id="@+id/deleteItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_remove_shopping_cart_black_24dp" />
 
         </LinearLayout>
 

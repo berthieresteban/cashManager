@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.epitech.cashmanager.EventBus.CountCartEvent
 import com.epitech.cashmanager.EventBus.HideFabCart
 import com.epitech.cashmanager.EventBus.UpdateItemInCart
 import com.epitech.cashmanager.adapter.ShoppingCartAdapter
@@ -25,6 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.layout_cart_item.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -151,4 +153,31 @@ class CartFragment : Fragment() {
 
             })
     }
+
+    private fun deleteItem(pos: Int) {
+        deleteItem.setOnClickListener {
+            val deleteItem = adapter!!.getItemAtPosition(pos)
+            cartDataSource!!.deleteCart(deleteItem)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe (object : SingleObserver<Int> {
+                    override fun onSuccess(t: Int) {
+                        adapter!!.notifyItemRemoved(pos)
+                        EventBus.getDefault().postSticky(CountCartEvent(true))
+                        Toast.makeText(context, "Delete item success", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Toast.makeText(context,"" + e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+        }
+    }
+
+
 }
