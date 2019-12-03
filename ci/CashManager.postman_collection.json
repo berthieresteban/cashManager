@@ -220,7 +220,7 @@
 											"",
 											"pm.test(\"Verify imgUrl\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.imgUrl).to.eql(\"tomateURL\");",
+											"    pm.expect(jsonData.imgUrl).to.eql(\"https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg\");",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1091,7 +1091,7 @@
 											"",
 											"pm.test(\"Verify imgUrl\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.imgUrl).to.eql(\"tomateURL\");",
+											"    pm.expect(jsonData.imgUrl).to.eql(\"https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg\");",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1216,7 +1216,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"name\": \"Tomate2\",\n  \"price\": 1.99,\n  \"description\": \"Toujours despagne.\",\n  \"quantity\": 12,\n  \"imgUrl\": \"tomate2Url\"\n}"
+									"raw": "{\n  \"name\": \"Tomate2\",\n  \"price\": 1.99,\n  \"description\": \"Toujours despagne.\",\n  \"quantity\": 12,\n  \"imgUrl\": \"https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/Products/1",

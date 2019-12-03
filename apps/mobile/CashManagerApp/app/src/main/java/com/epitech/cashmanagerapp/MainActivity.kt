@@ -18,6 +18,7 @@ import androidx.navigation.NavController
 import com.epitech.cashmanager.EventBus.CountCartEvent
 import com.epitech.cashmanager.EventBus.HideFabCart
 import com.epitech.cashmanager.db.CartDataSource
+import com.epitech.cashmanager.repository.APIService
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+
 }
 
 /*<com.google.android.material.button.MaterialButton
