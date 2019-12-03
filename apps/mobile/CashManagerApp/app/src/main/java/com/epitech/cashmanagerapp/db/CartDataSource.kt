@@ -18,7 +18,7 @@ interface CartDataSource {
 
     fun updateCart(cart: CartIt): Single<Int>
 
-    //  fun deleteCart(cart: CartIt): Single<Int>
+    fun deleteCart(cart: CartIt): Single<Int>
 
     // fun cleanCart(uid: String): Single<CartIt>
 

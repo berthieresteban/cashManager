@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.epitech.cashmanagerapp.R
+import kotlinx.android.synthetic.*
 
 class SettingsFragment : Fragment() {
 

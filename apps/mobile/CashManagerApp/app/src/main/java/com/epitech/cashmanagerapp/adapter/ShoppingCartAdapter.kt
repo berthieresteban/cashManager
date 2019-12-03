@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+import com.epitech.cashmanager.EventBus.CountCartEvent
 import com.epitech.cashmanager.EventBus.UpdateItemInCart
 import com.epitech.cashmanager.db.CartDataSource
 import com.epitech.cashmanager.db.CartDatabase
@@ -18,7 +20,11 @@ import com.epitech.cashmanager.db.LocalCartDataSource
 import com.epitech.cashmanager.model.CartItem
 import com.epitech.cashmanagerapp.R
 import com.squareup.picasso.Picasso
+import io.reactivex.SingleObserver
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.layout_cart_item.view.*
 import kotlinx.android.synthetic.main.layout_product_item.view.*
 import org.greenrobot.eventbus.EventBus
@@ -54,6 +60,32 @@ class ShoppingCartAdapter(var context: Context, var cartItems: List<CartIt>) :
             cartItems[position].product_quantity = newValue
             EventBus.getDefault().postSticky(UpdateItemInCart(cartItems[position]))
         }
+
+        viewHolder.itemView.deleteItem.setOnClickListener {
+            val deleteItem = this.getItemAtPosition(position)
+            cartDataSource!!.deleteCart(deleteItem)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe (object : SingleObserver<Int> {
+                    override fun onSuccess(t: Int) {
+                        EventBus.getDefault().postSticky(CountCartEvent(true))
+                        Toast.makeText(context, "Delete item success", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+                        Toast.makeText(context,"" + e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                })
+        }
+    }
+
+    fun getItemAtPosition(pos: Int): CartIt {
+        return cartItems[pos]
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

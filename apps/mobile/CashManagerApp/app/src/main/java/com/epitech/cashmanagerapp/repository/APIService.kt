@@ -1,9 +1,11 @@
 package com.epitech.cashmanager.repository
 
+import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.epitech.cashmanager.helper.Utils
 import com.epitech.cashmanager.model.ProductList
+import com.epitech.cashmanagerapp.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
