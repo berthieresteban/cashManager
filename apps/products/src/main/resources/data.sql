@@ -55,10 +55,10 @@ INSERT INTO user_roles (username, role) VALUES
 ('user3', 'ROLE_USER');
 
 INSERT INTO products (name, img_url, description, price, quantity) VALUES
-('Tomate', 'tomateURL', 'Une bonne tomate rouge qui vient despagne.', 1.99, 72),
-('Concombre', 'concombreURL', 'Le truc qui fait peur aux chats.', 1.32, 18),
-('Avocat', 'avocatsURL', 'Ca coute une blinde.', 2.99, 27),
-('Salade', 'saladeURL', 'Sur la tête.', 1.99, 14);
+('Tomate', 'https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg', 'Une bonne tomate rouge qui vient despagne.', 1.99, 72),
+('Concombre', 'https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg', 'Le truc qui fait peur aux chats.', 1.32, 18),
+('Avocat', 'https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg', 'Ca coute une blinde.', 2.99, 27),
+('Salade', 'https://cdn5.fermedesaintemarthe.com/I-Grande-24854-tomate-saint-pierre-ab.net.jpg', 'Sur la tête.', 1.99, 14);
 
 INSERT INTO carts (total_bill, articles, paid, payment_mode, username) VALUES
 (25.95, '[1, 2, 3]', false, NULL, 'user1'),
